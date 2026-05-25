@@ -40,7 +40,14 @@ git commit -m "描述你的改动"
 ```
 
 ### 3. 将 tool 的改动合入 main 并推送
-注意tool不能全量推送，而是必须询问用户要推送哪些内容，比如本claude.md就禁止推送。
+
+注意tool不能全量推送到main，而是必须询问用户要推送哪些内容。
+
+下面是禁止推送文件名单：
+ - .gitignore
+ - CLAUDE.md
+ - README.md
+
 ```bash
 git checkout main
 git merge tool                # 将 tool 的改动合并到 main
