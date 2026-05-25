@@ -9,6 +9,9 @@
 - `current/`: 当前维护中的版本，默认应优先使用这里的内容。
 - `old/`: 旧版本归档，用来回看措辞、结构或方法演进。
 - `sp-ver/`: 面向特定场景整理的中文版本，目前主要是 Hoare 系列的中文化 prompt。
+- `system-designer/`: 游戏系统策划相关 prompt（MDA 拆解、系统策划案撰写）。
+- `prompt-is-winning-so-much/`: 图式闭合提示词生成相关实验。
+- `test/`: schema-matching-agent 的图式匹配测试用例。
 
 ## 主要内容
 
@@ -50,6 +53,12 @@
 - `finegrained-check`: 适合做更细粒度的检查或补充验证。
 - `evo-graph`: 用来梳理演进关系、推导路径或结构变化。
 - `make-survey-plan`: 用来设计 survey / organise / plan 类型的调研与整理流程。
+- `charter-craft`: 项目根本约束 / 长期承诺文档（principles.md / 项目宪法）的制定与修订方法学。
+- `pr-craft`: Pull Request 描述书写规范，强制暴露跨 PR 的设计哲学、不变式契约与风险边界。
+- `principle-derivation` / `principle-derivation-v2` / `principle-deriv-paper-reading`: 问题意识驱动的设计推导方法学——从问题意识出发，派生设计原则，再展开具体推导。v2 为迭代版，paper-reading 为论文阅读场景特化版。
+- `auto-proof-trajectory-audit`: 面向 auto-proof-cc 运行轨迹的符合度评判与根因分析。
+- `schema-matching-agent`: 具备六对图式（Schema）匹配能力的认知 Agent 系统提示。
+- `skill-routing`: skill 选择经验沉淀记录——不是 skill 规约，而是用哪个 skill 的经验记录。
 
 ## 使用约定
 
