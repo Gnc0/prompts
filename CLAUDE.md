@@ -58,6 +58,10 @@ git checkout tool              # 切回 tool 继续开发
 ### 4. 向上游提交 PR
 在 GitHub 上从 `fork/main` 向 `origin/main` 发起 Pull Request。
 
+## 网络配置
+
+- 与 GitHub (gh / git) 通信时，默认使用本地代理端口 **7892**，即设置 `https_proxy=http://127.0.0.1:7892 http_proxy=http://127.0.0.1:7892`
+
 ## 注意事项
 
 - **永远不要** `git push origin main`（不要直接推原仓库）
