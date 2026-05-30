@@ -1,0 +1,4 @@
+[submodule "claude-code-system-prompts"]
+	path = claude-code-system-prompts
+	url = https://github.com/Gnc0/claude-code-system-prompts
+	branch = main
