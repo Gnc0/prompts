@@ -62,6 +62,24 @@ git checkout tool              # 切回 tool 继续开发
 
 - 与 GitHub (gh / git) 通信时，默认使用本地代理端口 **7892**，即设置 `https_proxy=http://127.0.0.1:7892 http_proxy=http://127.0.0.1:7892`
 
+## 子模块
+
+| 路径 | 远程仓库 | 分支 | 用途 |
+|------|----------|------|------|
+| `claude-code-system-prompts` | `https://github.com/Gnc0/claude-code-system-prompts` | main | Claude Code 系统提示词集合 |
+
+### 克隆后初始化子模块
+
+```bash
+git submodule update --init --recursive
+```
+
+### 更新子模块到最新
+
+```bash
+git submodule update --remote claude-code-system-prompts
+```
+
 ## 注意事项
 
 - **永远不要** `git push origin main`（不要直接推原仓库）
