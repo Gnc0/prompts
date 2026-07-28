@@ -137,6 +137,61 @@ schema-matching-agent 通过每轮强制 `<think_schema>` 判断来对抗这些�
 
 ---
 
+## /prompt-iter：什么时候用它"调提示词"
+
+**情境**：要把一个已存在的提示词（distiller / agent system-prompt / 工具描述 / 任何 prompt）"测着改到更好"，且有 eval 或能跑真 agent 的手段。
+
+- **用 `/prompt-iter`**：目标是**打磨一段已存在的提示词**——数据驱动 bake-off（基线 → 缺口 → 候选 → 确定性度量+多轮抽样 → 回归护栏 → 选赢家/诚实搁置）。固化了"判官单次不可信(sd≈2)、确定性度量破噪音、信息保全增量改不重写、并发不串行、测两层(产物+下游行为)、回归护栏、吓人回归先去噪"这些坑。有条件配 `/pi-consult` 当迭代顾问（**闭环回灌实验结果**再问第二轮）。
+- **不是 `/qpdi` / `/workflow`**：那两个是"从零设计+实现一个功能"的开发流程；`/prompt-iter` 只管"一段已有提示词的测试迭代"这一件事。
+- **不是 `/pi-consult` 单用**：`/pi-consult` 是"派多模型出思路/复核"，是 `/prompt-iter` 里取候选的一个环节，本身不含度量/对拼/回归护栏。
+
+---
+
+## code-bug-reasoning：讲清/判真假一个【具体 code bug】
+
+`code-bug-reasoning` 是 `principle-derivation-v2` 的**代码场景特化**——姿态沿用 pd-v2，加三个代码专属机制：① 大局先行+逐层定位（每层"大局定位→钉行号→回指大局"）；② **调用链契约传播**（后条件标异常·危险操作前条件标非-UB·击穿点=bug·符号枚举表治误报/漏报）；③ 可达性裁定（链闭合？+ 触发合理可达？→ 真 live/条件/退化/理论/假）。
+
+### 和相邻 skill 的分工
+
+| 场景 | 选 |
+|---|---|
+| 推导一个**设计/原则/概念**（任何领域）| **principle-derivation-v2**（或 v1，按事后/邀请）|
+| 讲清/判真假一个**已锁定的具体 code bug**（机制+可达性）| **code-bug-reasoning** |
+| 拿代码**对照 design spec** 查是否满足意图（需 spec、找偏离、可 auto-fix）| **hoare-audit** |
+| 一份 GitHub PR 的多方向 review | **workflow-audit** |
+| bug 还没定位、大海捞针阶段 | 都不是——先定位；code-bug-reasoning 管"锁定嫌疑段后如何讲清+判真假" |
+
+### 关键判别
+
+- **vs pd-v2**：主体是"一段代码里的一个缺陷"且要**沿数据流传播前后条件找击穿点** → code-bug-reasoning；主体是抽象设计/原则 → pd-v2。code-bug-reasoning **不复述** pd-v2 姿态、只引用。
+- **vs hoare-audit**：hoare-audit 是**有 spec 的 code-vs-spec 审计循环**（hunting + findings + fix）；code-bug-reasoning **无需 spec**、针对**单个已疑似缺陷**做"讲清 + 判真假 + 定可达性"。前者找 bug、后者论 bug。
+- **双重身份**（写在 skill §六）：它也是**逐函数契约分析（verify-program / FM-Agent / CCodeAnalyze 那类 per-function Pre/Post+SP）缺的那条边——跨函数异常传播 pass——的规格**。逐函数分析"有节点无边"、系统漏跨函数涌现 bug（实证：某 run 逐函数写了 `GetSumOfQuerySeq` 的 Post、也标了内存尺寸依赖，却没连"int32 返回值溢出成负→击穿尺寸检查"这条边，被端到端 PBT 抓到）。要补这条边 → 用 code-bug-reasoning §二当 pass 规格。
+
+### 由来（防"用方法替代思考"）
+
+这个 skill 是从一次真实 bug 分析里**被用户逐轮逼出来的**：先犯"惜墨如金→读者没模型→loophole"，补出"大局先行+逐层定位"；再犯"单操作数脑补→误报 + 不传另一操作数异常→漏一个必要条件"，补出"契约传播+符号枚举"。**所以它的反模式（skill §五）不是想象的、是踩过的**——用时对着 §五自查最省事。
+
+---
+
+## /scco-recall vs /qpdi-tribunal vs /hoare-audit：召回层与判断层
+
+三者不是竞品，是同一审查体系的两层：
+
+- **scco-recall** — 召回层：互盲正交低阈值扇出产**候选池**，只捞不判（finder 有意 spec-盲）；强制含跨文件/消费者角度
+- **qpdi-tribunal** — 判断层：counter→judge 对抗式精度 + SCCO 分流（可修 / 需裁决 / 伪问题）；拿 spec 滤"有意决策"类噪音
+- **hoare-audit** — 重型判断层：spec 门 + ≥2 disprove-first challenger + 收敛循环 + 每条确认发现钉 PBT
+
+判别：
+
+- 一大坨 diff / 大文档要审、怕漏 → 先 **scco-recall** 再 tribunal / hoare-audit
+- 已有候选或单条主张要判真假 → 直接 **tribunal**（单个 code bug → code-bug-reasoning）
+- 正确性关键 + 要收敛到不动点 + spec 在手 → **hoare-audit**（可用 scco-recall 当其 Step 2 召回前端）
+- **禁**：把 scco-recall 的候选池直接当结论对外报——它未经精度层
+
+由来：一次 PR 审查中，max-recall code-review（10 镜头扇出）在已被 5 轮 hoare-audit 收敛的代码上仍捞出 15 条有效发现，最值钱的两条在**未改动的消费者代码**里；复盘发现其 10 镜头全部塌进 SCCO 四维（约定合规也是——约定即要求，属对规则层的 Sound）。优势不在新维度，在**召回程序 + 找/论分层 + 消费者范围规则**，遂抽成 scco-recall、并把这三样回补进 tribunal。
+
+---
+
 ## 记入此文件的触发条件
 
 - 用错了 skill / 用错了 skill 变体（如 v1/v2）发现的经验
