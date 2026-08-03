@@ -97,7 +97,7 @@ git submodule update --remote claude-code-system-prompts
 | abstraction-analyst | `prompt-is-winning-so-much/abstraction-analyst/` | 回应前先完成理解：定位真实需求在话题结构中的位置 |
 | analytic-philosophy-prose | `prompt-is-winning-so-much/analytic-philosophy-prose/` | 以顶刊分析哲学范式写作/改写/评审哲学文本 |
 | designer | `prompt-is-winning-so-much/designer/` | 游戏设计三件套（文案策划 / MDA 拆解 / 策划案撰写） |
-| general-prompt | `prompt-is-winning-so-much/general-prompt/` | 七层图式闭合提示词生成（基础 / 简易 / 判官版） |
-| philosophy-explorer | `prompt-is-winning-so-much/philosophy-explorer/` | 哲学探索：思想编辑与暂定判断生成 |
+| general-prompt | `prompt-is-winning-so-much/general-prompt/` | 七层图式闭合提示词生成（基础 / 判官版） |
+| philosophy-explorer | `prompt-is-winning-so-much/philosophy-explorer/` | 哲学探索：思想编辑与暂定判断生成（基础版刚性 / 规约版调节软化） |
 
 > 屏蔽说明：`prompt-only-look-myself/` 已加入 `.gitignore`，不被版本追踪。
