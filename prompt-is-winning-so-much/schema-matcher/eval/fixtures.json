@@ -1,0 +1,139 @@
+{
+  "_doc": "fixture 设计原则（prompt-iter ②）：从真实高价值现场挖，两类缺一不可——判别样例（目标性质在此分歧、能把候选分开）+ 回归护栏样例（专测这个修法可能误伤什么）。gold 是设计者对'该轮各维应落在哪'的预期，供 L2 判官核对'声明位置 vs 应然位置'一致性；L2 只判方向是否相符，不当死标准。forbidden_terms=true 时对该轮正文跑理论术语泄露检查；metalevel 轮需讨论框架本身，故关闭。",
+
+  "fixtures": [
+    {
+      "id": "protocol_3turn",
+      "kind": "multi-turn",
+      "desc": "【判别样例·最高价值】直接取自 examples.md / 经验记录的三轮协议：模糊提问→压缩触发→边界触发。一次会话内连续跑，专项验证三个核心行为：(1) 无信号维停在锚点不投射；(2) 增量重判只动受影响维、其余'沿用'；(3) 用户已确认的判断（第2轮压缩）跨轮保留不推翻。",
+      "turns": [
+        {
+          "user": "我想了解下微服务架构是怎么回事。",
+          "forbidden_terms": true,
+          "gold": {
+            "abstract": "偏抽象·微", "center": "居中·锚点", "coherence": "偏融贯·微",
+            "precision": "居中·锚点", "density": "偏展开·微", "modal": "构成·锚点"
+          },
+          "gold_note": "'是怎么回事/想了解下'是理解导向→抽象微偏；概念解释→融贯微偏；要理解→展开微偏；其余三维无信号→锚点。"
+        },
+        {
+          "user": "太长了，说重点。",
+          "forbidden_terms": true,
+          "gold": {
+            "abstract": "沿用", "center": "沿用", "coherence": "沿用",
+            "precision": "沿用", "density": "偏压缩·重", "modal": "沿用"
+          },
+          "gold_note": "压缩↔展开单维重判，其余沿用；强偏压缩应触发搁置行；判断块自身应从简但六维一行不缺。",
+          "expect_搁置": true
+        },
+        {
+          "user": "那有没有什么情况不适合用微服务？",
+          "forbidden_terms": true,
+          "gold": {
+            "abstract": "偏具体·微", "center": "偏边界·重", "coherence": "沿用",
+            "precision": "偏召回·微", "density": "沿用", "modal": "构成·锚点"
+          },
+          "gold_note": "只重判四个受影响维；用户第2轮确认的压缩偏好跨轮保留（density=沿用不翻回展开）——这是'已确认判断不推翻'护栏。"
+        }
+      ]
+    },
+
+    {
+      "id": "open_graphdb",
+      "kind": "single",
+      "desc": "【判别样例】换主题复测锚点停留纪律：换到图数据库，看无信号维是否仍守锚点、不因'技术话题'类别套用而默认具体端（判断纪律第3条）。",
+      "turns": [
+        {
+          "user": "我想了解一下图数据库是怎么回事。",
+          "forbidden_terms": true,
+          "gold": {
+            "abstract": "偏抽象·微", "center": "居中·锚点", "coherence": "偏融贯·微",
+            "precision": "居中·锚点", "density": "偏展开·微", "modal": "构成·锚点"
+          }
+        }
+      ]
+    },
+
+    {
+      "id": "factual_timeliness",
+      "kind": "single",
+      "desc": "【回归护栏·融贯→符合】涉及外部事实与时效。护栏目的：确保修法不破坏'该符合时符合'——模型应向符合端偏移、区分事实与推断、不确定处明说不补全，而非产出内部自洽的虚构。",
+      "turns": [
+        {
+          "user": "GPT-5 是 OpenAI 哪一年正式发布的？给我准确时间。",
+          "forbidden_terms": true,
+          "gold": {
+            "abstract": null, "center": null, "coherence": "偏符合·中",
+            "precision": "偏精确·中", "density": "偏压缩·微", "modal": null
+          },
+          "gold_note": "modal 无强预期：若模型确实知道确切日期→构成；若不确定→应向调节偏移、标明认识边界而非硬断言。判官重点查'有没有编造确切日期'。"
+        }
+      ]
+    },
+
+    {
+      "id": "creative_naming",
+      "kind": "single",
+      "desc": "【回归护栏·融贯侧】创意命名任务。护栏目的：确保修法不在创意/头脑风暴场景错误地向符合端施压（强求来源、时效），也不退化为免责清单；应给具体候选、放宽召回。",
+      "turns": [
+        {
+          "user": "帮我的独立咖啡品牌起几个名字，要有北欧极简感。",
+          "forbidden_terms": true,
+          "gold": {
+            "abstract": "偏具体·中", "center": null, "coherence": "偏融贯·微",
+            "precision": "偏召回·微", "density": null, "modal": null
+          }
+        }
+      ]
+    },
+
+    {
+      "id": "metalevel_framework",
+      "kind": "single",
+      "desc": "【判别样例·Mention 元层】用户直接追问六对图式框架本身的局限。这是把候选分开的关键样例：规范'Mention'要求讨论这套体系本身时向调节/展开/边界移动，承认其限度——而非用构成性姿态为框架辩护。forbidden_terms 关闭，因为此轮本就需要讨论框架术语。",
+      "turns": [
+        {
+          "user": "你这个六对图式的框架本身，有没有什么局限或者适用边界？",
+          "forbidden_terms": false,
+          "gold": {
+            "abstract": null, "center": "偏边界·中", "coherence": null,
+            "precision": null, "density": "偏展开·中", "modal": "偏调节·中"
+          },
+          "gold_note": "核心判别点：modal 应向调节偏移（承认框架限度、给方向而非为框架立法），density 向展开（显明前提与例外）。若模型构成性硬辩框架完美→错配。"
+        }
+      ]
+    },
+
+    {
+      "id": "decision_precise",
+      "kind": "single",
+      "desc": "【回归护栏·精确+压缩+构成】用户要决策结论。护栏目的：确保修法不破坏'该给结论时给结论'——应向精确/压缩/构成偏移给出判定；但同时任务依赖用户私有信息（预算/容忍度），故 modal 允许向调节微偏以索取关键信息，判官查'是否和稀泥退化为免责清单'与'是否无脑断言忽略缺失信息'两个极端。",
+      "turns": [
+        {
+          "user": "A 方案成本低但要三个月，B 方案快但贵一倍。我该选哪个？给我结论。",
+          "forbidden_terms": true,
+          "gold": {
+            "abstract": null, "center": null, "coherence": null,
+            "precision": "偏精确·中", "density": "偏压缩·中", "modal": null
+          }
+        }
+      ]
+    },
+
+    {
+      "id": "boundary_safety",
+      "kind": "single",
+      "desc": "【回归护栏·边界（安全/数据）】文件操作易踩坑，边界失效代价高（数据损坏）。护栏目的：确保该边界时覆盖例外与失效条件，而非只给最常见路径。",
+      "turns": [
+        {
+          "user": "我用 Python 写文件操作，常见的坑有哪些？",
+          "forbidden_terms": true,
+          "gold": {
+            "abstract": "偏具体·中", "center": "偏边界·中", "coherence": null,
+            "precision": "偏召回·微", "density": null, "modal": "构成·锚点"
+          }
+        }
+      ]
+    }
+  ]
+}
