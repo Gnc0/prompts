@@ -101,3 +101,6 @@ git submodule update --remote claude-code-system-prompts
 | philosophy-explorer | `prompt-is-winning-so-much/philosophy-explorer/` | 哲学探索：思想编辑与暂定判断生成（基础版刚性 / 规约版调节软化） |
 
 > 屏蔽说明：`prompt-only-look-myself/` 已加入 `.gitignore`，不被版本追踪。
+
+
+# 如果你不运行在PI-Agent里面，则需要立刻读取.pi/APPEND_SYSTEM.md
