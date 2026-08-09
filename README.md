@@ -12,7 +12,7 @@ tool分支为开发版本，有很多private内容，main分支是跟ssyram的�
 - `prompt-is-winning-so-much/`: 提示词技能库——图式闭合提示词生成、哲学对话/探索、图式匹配等技能的合集，详见下方「prompt-is-winning-so-much 技能库」。
 - `history/`: 经验记录与事件复盘（如 skill-routing 误判事件记录）。
 - `claude-code-system-prompts/`: Claude Code 系统提示词子模块。
-- ~~`old/`、`sp-ver/`、`system-designer/`、`test/`~~: 历史目录，已不在仓库中（`old/` 曾存放 `principle-workflow.md` 等旧版本归档）。
+- ~~`old/`、`sp-ver/`、`system-designer/`、`test/`~~: 历史目录，已不在仓库中。
 
 ## 主要内容
 
@@ -33,8 +33,6 @@ tool分支为开发版本，有很多private内容，main分支是跟ssyram的�
 - `qpdi`: QPDI 宪政式 AI 工作框架——以 /workflow 等 SDD skill 为骨架，从问题意识（Q）出发推进设计（D）→ 实现（I）全流程：意图落宪、架构起草与原则抽离、细化、实现测试、公检法审查。自包含，不依赖任何外部仓库。
 - `qpdi-tribunal`: SCCO 公检法审查——对任意产物（设计文档 / 代码 / 计划 / 论证）做 challenger & prover → counter → judge 的对抗式审查，按 Sound / Complete / Concise / Optimization 四维收敛，问题分流为可直接修与须用户裁决。
 - `scco-recall`: SCCO 召回扇出——审查体系的召回层。把审查对象按 SCCO 维度拆成互盲、正交、低阈值的并行 finder 镜头（强制含跨文件/消费者角度），先捞候选池、再交精度层（qpdi-tribunal / hoare-audit）裁决。只捞不判。
-
-> `principle-workflow` 已不在 `current/`（上游同步时移除，旧版见 `old/`）。其「宪法约束下工作」的定位由 `qpdi`（宪政式框架）与 `charter-craft`（立宪）衔接覆盖。
 
 ### 辅助 prompt
 
