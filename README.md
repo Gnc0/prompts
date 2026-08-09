@@ -12,7 +12,7 @@ tool分支为开发版本，有很多private内容，main分支是跟ssyram的�
 - `old/`: 旧版本归档，用来回看措辞、结构或方法演进。
 - `sp-ver/`: 面向特定场景整理的中文版本，目前主要是 Hoare 系列的中文化 prompt。
 - `system-designer/`: 游戏系统策划相关 prompt（MDA 拆解、系统策划案撰写）。
-- `prompt-is-winning-so-much/`: 图式闭合提示词生成相关实验。
+- `prompt-is-winning-so-much/`: 提示词技能库——图式闭合提示词生成、哲学对话/探索、图式匹配等技能的合集，详见下方「prompt-is-winning-so-much 技能库」。
 - `test/`: schema-matching-agent 的图式匹配测试用例。
 
 ## 主要内容
@@ -61,6 +61,22 @@ tool分支为开发版本，有很多private内容，main分支是跟ssyram的�
 - `auto-proof-trajectory-audit`: 面向 auto-proof-cc 运行轨迹的符合度评判与根因分析。
 - `schema-matching-agent`: 具备六对图式（Schema）匹配能力的认知 Agent 系统提示。
 - `skill-routing`: skill 选择经验沉淀记录——不是 skill 规约，而是用哪个 skill 的经验记录。
+
+### prompt-is-winning-so-much 技能库
+
+`prompt-is-winning-so-much/` 下每个子目录是一个可复用提示词技能（skill），描述一种可被反复调用的提示词工作方式。两级路由：本 README 按场景选技能目录（一级路由），进入目录后由 `SKILL.md` 做版本级路由（二级路由）。
+
+| 技能 | 目录 | 一句话说明 |
+|------|------|------------|
+| abstraction-analyst | `prompt-is-winning-so-much/abstraction-analyst/` | 回应前先完成理解：定位真实需求在话题结构中的位置 |
+| analytic-philosophy-prose | `prompt-is-winning-so-much/analytic-philosophy-prose/` | 以顶刊分析哲学范式写作/改写/评审哲学文本 |
+| designer | `prompt-is-winning-so-much/designer/` | 游戏设计三件套（文案策划 / MDA 拆解 / 策划案撰写） |
+| general-prompt | `prompt-is-winning-so-much/general-prompt/` | 七层图式闭合提示词生成（基础 / 判官版） |
+| philosophy-explorer | `prompt-is-winning-so-much/philosophy-explorer/` | 哲学探索：思想编辑与暂定判断生成（基础版刚性 / 规约版调节软化） |
+| philosophy-interlocutor | `prompt-is-winning-so-much/philosophy-interlocutor/` | 哲学对话：结论放最后、每步推导可被击中、概念从现象自身结构长出、不擅自开辟新论域、不使用排版装饰 |
+| schema-matcher | `prompt-is-winning-so-much/schema-matcher/` | 六轴图式判断：每次回复前显式输出 think_schema 块，对齐需求图式位置（含 eval/ 评测脚手架） |
+
+经验笔记：`prompt-is-winning-so-much/EXPERIENCE-schema-matcher.md` 记录了 schema-matcher 提示词的打磨过程与可复用流程（不是提示词，不进入系统提示）。
 
 ## 使用约定
 
