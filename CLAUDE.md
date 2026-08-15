@@ -88,9 +88,27 @@ git submodule update --remote claude-code-system-prompts
 - `main` 分支应该始终保持干净，与 `origin/main` 一致
 - 如果 `tool` 积累了大量零散 commit，合入 `main` 前考虑用 `git rebase -i` 整理
 
+## current/ 技能路由（当前维护版本）
+
+`current/` 是当前维护版本的**唯一真相源**——涉及具体 prompt / skill 时默认从 `current/` 读取，新增或修改 prompt 也收敛到 `current/`。
+
+| skill | 一句话说明 |
+|---|---|
+| hoare-prompt / hoare-design / hoare-audit | HoarePrompt 方法参考 / 从实现反推描述性规约 / 有 spec 前提下的持续正确性审计 |
+| workflow / workflow-audit | 通用开发流程规范 / 多方向 disprove-first 的 PR 审计 |
+| qpdi / qpdi-compose / qpdi-tribunal / scco-recall | QPDI 认知与论证框架 / Q+D 写作 / SCCO 公检法审查 / SCCO 召回扇出（只捞不判） |
+| principle-derivation / -v2 / -paper-reading / code-reasoning | 问题意识驱动推导（v1 事后整理 / v2 邀请同行 / 论文阅读特化 / 代码 bug 讲清+判真假特化） |
+| finegrained-check / evo-graph / make-survey-plan | 细粒度一致性检查 / 演进关系图梳理 / survey 调研流程 |
+| charter-craft / pr-craft | 项目宪法制定与修订 / PR 描述书写规范 |
+| explain / no-flattering / pi-consult / prompt-iter | 向具体的人讲清事实 / 拒绝迎合先拷打 / 多模型顾问调度 / 用测量迭代提示词 |
+| auto-proof-trajectory-audit | auto-proof-cc 运行轨迹的符合度评判与根因分析 |
+| schema-matching-agent | 六对图式匹配认知 Agent 系统提示 |
+
+选 skill 的判别经验见 `current/skill-routing.md`——它不是 skill 规约，而是**给主对话 Claude 看的路由参考**（易混 skill 的区分、用错 skill 的教训）。遇到「该用哪个 skill / 哪个变体」的歧义时先查它。
+
 ## prompt-is-winning-so-much 技能库路由
 
-`prompt-is-winning-so-much/` 下每个子目录是一个技能；进入任一目录后，`SKILL.md` 提供该技能的版本级路由（二级路由）。
+`prompt-is-winning-so-much/` 是**技能类** prompt 合集（对话规范、认知姿态、哲学对话等），与 `current/` 的工程类 prompt 互补；下每个子目录是一个技能，进入任一目录后，`SKILL.md` 提供该技能的版本级路由（二级路由）。技能库的增删需同步更新本表。
 
 | 技能 | 路径 | 一句话说明 |
 |------|------|------------|
