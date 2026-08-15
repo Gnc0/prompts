@@ -137,6 +137,44 @@ schema-matching-agent 通过每轮强制 `<think_schema>` 判断来对抗这些�
 
 ---
 
+## /qpdi、/qpdi-compose 与 SCCO 审查：认知、写作、检查分开
+
+### 一句话区别
+
+- **`/qpdi`** — 理解 QPDI 静态结构，识别用户论域，拆解复合论证，把材料锚定到 Q / D 及 D 内 P，并用 Discover 定位缺口。
+- **`/qpdi-compose`** — 专门把材料写成 Q 与任意深度的 D 展开；P 作为 D 内规则一起写；可以按明确授权路径落盘；不写 I。
+- **`/scco-recall` / `/qpdi-tribunal` / `/hoare-audit`** — 检查已经形成的产物，不负责代替 compose 起草 Q/D。
+
+### 当前路由
+
+| 场景 | 当前选择 |
+|---|---|
+| 理解 QPDI、判断用户在谈哪类内容、分析 Q/D/P 关系 | `/qpdi` |
+| 从用户复合话语保全论证，再整理、起草或落盘 Q | `/qpdi-compose` |
+| 从 Q 起草设计，或把一个 D 节点继续展开成下一层 D | `/qpdi-compose` |
+| 重组已有 Q/D/P 文档，补清 reasoning、作用域和 trace | `/qpdi-compose` |
+| 对大对象做 SCCO 高召回找漏 | `/scco-recall` |
+| 对已有产物做 SCCO 对抗裁决与问题分流 | `/qpdi-tribunal` |
+| 用强 spec 审代码是否满足设计 | `/hoare-audit` |
+
+### `/qpdi-compose` 的边界
+
+- 写作对象是 **Q + D 展开链**；P 属于 D 内部，不作为独立顶层产物。
+- D 不固定为“architecture + detail”两层。大型项目可以是 `D.root → D.1 → D.2 → … → D.n`；每层回答其上层承诺、拥有自己的 reasoning/P，并继续向下展开。
+- 不提供 I 模板，不生成代码、配置或实现规约；I 高度依赖具体项目，只作为设计的下游边界被提及。
+- SCCO 不是 compose 的主体。compose 只需让 proof 写得可检查，并做最小写作自检；正式召回、攻击、反驳和裁决交给 SCCO 审查 skill。
+- 推荐的 Q/D 文件结构、展开层数和回答格式都可被用户指令覆盖；关键是内容类型、论证关系和 trace 正确。
+- 默认只给 candidate 草案；写入文件需要明确授权，写入授权不等于用户确认 candidate Q。
+
+### 关键误区
+
+- 不把 QPDI 当完整工程 workflow；它首先是认知与论证结构。
+- 不把 D 文档粒度固定成两级；“顶层 / 详细”只是小型项目的常见坍缩。
+- 不让 compose 承担完整 SCCO 审查，也不让审查 skill 反过来替代 Q/D 写作。
+- 不因设计对 I 有下游影响，就把用户的设计讨论改述成 I 任务或自动扩大修改授权。
+
+---
+
 ## /prompt-iter：什么时候用它"调提示词"
 
 **情境**：要把一个已存在的提示词（distiller / agent system-prompt / 工具描述 / 任何 prompt）"测着改到更好"，且有 eval 或能跑真 agent 的手段。
