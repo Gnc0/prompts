@@ -386,6 +386,23 @@ P.global: owner / scope
 
 状态、索引和反向链接只在有真实消费者时增加，不为了完整感库存字段。
 
+## 12.1 可导航展开与叶子完成粒度
+
+D 文档首先服务逐层阅读。每个文件开头用一句话说明本 frame 要完成什么；章节较多时先给一屏内导航。每个 component 必须在其定义处直接二选一，不把所有去向堆到文件末尾：
+
+- `expands-to`：仍有设计问题，链接到下一层 D-frame 的具体章节或文件；
+- `implemented-by`：已是叶子，链接到落实它的具体 I，并说明该 I 承接哪个 contract。
+
+**Thin / thick 判定**：contract 单一、组合关系显然、没有独立分支/不变量/失败模型的 component 可以在父文档写完后直接 `implemented-by`；涉及多个实现单元、复杂分支、跨工件不变量、独立 threat model 或 prompt 协议的 component 必须展开。树可以不平衡，不为追求统一层数制造空文档。
+
+叶子 D 必须细到足以审查 I，但仍只写 contract、流程与论证，不代写 I：
+
+- **代码型 I**：列出全部实现单元/函数。每个函数至少记录签名、职责、caller/callee、pre/post 与副作用，或标明 `trivial + 理由`；含循环/递归、跨模块调用、状态写入或独立错误恢复的 non-trivial 函数，继续写完整分支、退出、callee contract、循环义务、显式假设链与 pre→post 论证。
+- **Prompt 型 I**：写明输入/read-set、目标、可观察的 decision/evidence flow、分支、输出 contract、禁止推断、gate handoff，以及真正具有约束作用的关键句与理由。不得要求或库存隐藏 chain-of-thought；“思考过程”必须改写成可检查的证据与决策协议。
+- **Schema/config 型 I**：写明字段/状态、producer/consumer、invariant、允许/拒绝集合、生命周期、ownership 与失败语义。
+
+一个 D 子树过厚时可以使用 `detailed-design/` 目录。目录入口保留一屏内树形导航和全局 contract；子文件按真实 component ownership 划分，而不是按篇幅机械切片。每个子文件继续遵守 `expands-to | implemented-by`，确保从 D.root 可沿链接到每个叶子 I。
+
 # 五、落盘
 
 ## 13. 推荐布局

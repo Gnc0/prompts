@@ -80,6 +80,17 @@ Structural Locality 的目的，是防止局部判断伪装成全局原则，也
 - 内容既没有断链和遗漏，也没有重复、孤立与无排除力的结构；
 - 结论由真实材料、命令、测试、审查或用户确认锚定，AI 自述不算证据。
 
+### 设计限制与权衡的位置
+
+设计方案的 trade-off、能力边界、残余风险和潜在漏洞通常属于拥有该方案的 D-frame，而不是 Q，尤其不能因人确认“这个设计目前有限”就反写成 Q.I、降低用户原本追求的正确性或 wanted outcome。
+
+- 局部 D/I 无法严格履行原 contract 或提出 contract 修改时，direct owner D 必须先重算 composition 的实际 guarantee。若 owner 仍完整满足其 parent 分配的 contract，这只是本层 contract redesign：由本层 R 论证后传播停止，不称为 guarantee narrowing，也不必上报 D.root。
+- 只有 owner 的实际对上 guarantee 因此变弱时，才形成该层的 guarantee narrowing，并向 parent D 报告。Parent 重新计算自身实际 guarantee：若其对上保证不变则停止；若也变弱则由 parent 记录自身 narrowing 并继续向上。该条件递归传播的最顶层是 D.root/root P。
+- 只有 D.root 直接比较 Q：中间 D-frame 只比较自身实际 guarantee 与 parent contract；D.root 比较整体实际 guarantee/root P 与 Q，并由人确认任何会使顶层 Sound/Complete 非严格的残余缺口。不得把真实 narrowing 藏在叶子实现、测试备注或审计附件中。
+- Guarantee narrowing 只向上报告，不向下传播。上层或人确认 residual gap 只收窄该 D-frame 的保证声明；它不会削弱下层原 contract，也不得变成向后代传播的 global P。后代责任只有经过另一个有论证的 contract redesign 才能改变。
+- 人确认某项设计限制及其风险，可以授权在该限制可见的前提下继续当前 D；这不等于人把限制本身变成了意图。
+- 只有人明确改变“什么算正确、真正想要什么或不可接受什么”时，才新增或修订 Q.I；否则应修订 P/M/R、记录 limitation，并重新检查 `M ⊨ P` 与 Optimality。
+
 ## 6. SCCO
 
 SCCO 是对节点、论证关系和整体结构的四维评价：
