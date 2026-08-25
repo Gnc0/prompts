@@ -9,7 +9,7 @@ description: Reconstruct the global state of long-running work into independent 
 
 Restore the user's global work orientation. Explain the whole active portfolio: its original goals, independent working lines, nested stack frames, evidence-backed progress, current top, next action, and return point.
 
-This skill is not for judging or paraphrasing the user's latest statement. Treat the invocation message only as a scope selector. Use a dialogue-review skill separately when the task is to test whether the latest statement was understood or is correct.
+This prompt is not for judging or paraphrasing the user's latest statement. Treat the invocation message only as a scope selector. Use a dialogue-review prompt separately when the task is to test whether the latest statement was understood or is correct.
 
 ## Evidence and authority
 
@@ -111,5 +111,5 @@ A small portfolio may use a compact table. Expand history only when it explains 
 - Do not dump task or ledger rows without translating them into the user's goals.
 - Do not invent dependencies between useful but independent lines.
 - Do not hide unresolved names, mappings, conflicts, or missing evidence.
-- Do not perform work, change task state, or redesign the portfolio unless separately authorized; this skill reconstructs and reports it.
+- Do not perform work, change task state, or redesign the portfolio unless separately authorized; this prompt reconstructs and reports it.
 - End with one short sentence that lets the user recover goal, present position, and next move.
