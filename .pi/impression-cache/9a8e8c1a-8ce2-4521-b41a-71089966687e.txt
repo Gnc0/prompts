@@ -1,0 +1,70 @@
+# Task 67 — Proportionate testing source materials
+
+## Source 1
+
+- Original URL: https://docs.pytest.org/en/stable/how-to/usage.html
+- Source kind: Official pytest documentation — “How to invoke pytest”
+- Exact passage/section: **Run tests by keyword expressions** — “This will run tests which contain names that match the given string expression (case-insensitive), which can include Python operators that use filenames, class names and function names as variables. The example above will run `TestMyClass.test_something` but not `TestMyClass.test_method_simple`.”
+- Minimal faithful summary/scope: `pytest -k` selects tests by a case-insensitive keyword expression over filenames, class names, and function names.
+
+## Source 2
+
+- Original URL: https://jestjs.io/docs/cli
+- Source kind: Official Jest CLI documentation
+- Exact passage/section: **`--findRelatedTests <spaceSeparatedListOfSourceFiles>`** — “Find and run the tests that cover a space separated list of source files that were passed in as arguments. Useful for pre-commit hook integration to run the minimal amount of tests necessary.”
+- Minimal faithful summary/scope: The option narrows execution to tests covering specified source files and explicitly describes a minimal pre-commit test set.
+
+## Source 3
+
+- Original URL: https://jestjs.io/docs/cli
+- Source kind: Official Jest CLI documentation
+- Exact passage/section: **`--runTestsByPath`** — “Run only the tests that were specified with their exact paths. This avoids converting them into a regular expression and matching it against every single file.”
+- Minimal faithful summary/scope: Exact test paths define the run boundary instead of a broad path-pattern scan.
+
+## Source 4
+
+- Original URL: https://go.dev/cmd/go/
+- Source kind: Official Go command documentation — “Test packages” / `-run regexp`
+- Exact passage/section: **`-run regexp`** — “Run only those tests, examples, and fuzz tests matching the regular expression.”
+- Minimal faithful summary/scope: `go test -run` filters tests, examples, and fuzz tests by regular expression; the surrounding reference notes that matching parent tests may also run to discover sub-tests.
+
+## Source 5
+
+- Original URL: https://doc.rust-lang.org/cargo/commands/cargo-test.html
+- Source kind: Official Cargo command reference — “Package Selection” / “Target Selection”
+- Exact passage/section: **Target Selection** — “Passing target selection flags will test only the specified targets.”
+- Minimal faithful summary/scope: Cargo target-selection flags bound the test run to the named targets; package defaults separately depend on the selected manifest and workspace configuration.
+
+```acceptance-report
+{
+  "criteriaSatisfied": [
+    {
+      "id": "criterion-1",
+      "status": "satisfied",
+      "evidence": "Only source records were collected and written; no project implementation scope was widened."
+    }
+  ],
+  "changedFiles": [
+    "/Users/ssyram/workspace/ai-tools/prompts/.pending/occams-razor/worker-outputs/67-proportionate-testing-materials.md"
+  ],
+  "testsAddedOrUpdated": [],
+  "commandsRun": [
+    {
+      "command": "date +%Y-%m-%d",
+      "result": "passed",
+      "summary": "2026-08-26"
+    },
+    {
+      "command": "curl official pytest/Jest/Go/Cargo documentation pages and extract targeted sections",
+      "result": "passed",
+      "summary": "Captured the quoted sections recorded above."
+    }
+  ],
+  "validationOutput": [],
+  "residualRisks": [],
+  "noStagedFiles": true,
+  "diffSummary": "Added the requested primary-source collection artifact only.",
+  "reviewFindings": [],
+  "manualNotes": "No implementation, test, review, rating, or recommendation work was performed."
+}
+```

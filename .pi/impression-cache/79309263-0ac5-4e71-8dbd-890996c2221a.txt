@@ -1,0 +1,73 @@
+## Sources
+
+### 1
+- Official URL: https://model-spec.openai.com/2025-12-18.html#express_uncertainty
+- Source kind: Official model-behavior specification
+- Exact passage/section: **Express uncertainty** — “The assistant may sometimes encounter questions that span beyond its knowledge, reasoning abilities, or available information. In such cases, it should express uncertainty or qualify the answers appropriately, often after exploring alternatives or clarifying assumptions.”
+- Minimal faithful summary/scope: Guidance for qualifying answers when knowledge, reasoning, available information, or assumptions are insufficient.
+
+### 2
+- Official URL: https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview
+- Source kind: Official prompt-engineering documentation
+- Exact passage/section: **Give Claude a way out**
+- Minimal faithful summary/scope: Guidance for allowing an explicit “I don’t know”/unable-to-answer response when the available information is insufficient.
+
+### 3
+- Official URL: https://pair.withgoogle.com/guidebook-v2/patterns/how-do-i-explain-my-ai-system
+- Source kind: Official human-centered AI design guidance
+- Exact passage/section: **How do I explain my AI system?**
+- Minimal faithful summary/scope: Pattern guidance for explaining an AI system and its behavior to people.
+
+### 4
+- Official URL: https://pair.withgoogle.com/guidebook-v2/patterns/how-do-i-support-when-something-goes-wrong
+- Source kind: Official human-centered AI design guidance
+- Exact passage/section: **How do I support when something goes wrong?**
+- Minimal faithful summary/scope: Pattern guidance for user support and communication when an AI interaction or result fails.
+
+### 5
+- Official URL: https://pair.withgoogle.com/guidebook-v2/patterns/how-do-i-calibrate-user-trust
+- Source kind: Official human-centered AI design guidance
+- Exact passage/section: **How do I calibrate user trust?**
+- Minimal faithful summary/scope: Pattern guidance for helping users form appropriately calibrated trust in an AI system.
+
+### 6
+- Official URL: https://airc.nist.gov/airmf-resources/playbook/measure/
+- Source kind: Official AI risk-management playbook
+- Exact passage/section: **Measure**
+- Minimal faithful summary/scope: Guidance covering measurement and documentation of AI-system limitations, errors, incidents, impacts, and related communications.
+
+```acceptance-report
+{
+  "criteriaSatisfied": [
+    {
+      "id": "criterion-1",
+      "status": "satisfied",
+      "evidence": "Only six official source records were collected; no review, rating, recommendation, synthesis, or unrelated implementation work was added."
+    }
+  ],
+  "changedFiles": [
+    "/Users/ssyram/workspace/ai-tools/prompts/.pending/occams-razor/worker-outputs/73-uncertainty-communication-materials.md"
+  ],
+  "testsAddedOrUpdated": [],
+  "commandsRun": [
+    {
+      "command": "date '+%Y-%m-%d %Z'",
+      "result": "passed",
+      "summary": "Reported 2026-08-26 HKT."
+    },
+    {
+      "command": "curl official source pages and extract source sections",
+      "result": "passed",
+      "summary": "Official OpenAI, Anthropic, Google PAIR, and NIST source pages were retrieved or identified from their official documentation navigation."
+    }
+  ],
+  "validationOutput": [
+    "The mandated output artifact was written with six URL/source-kind/passage-or-section/scope records."
+  ],
+  "residualRisks": [],
+  "noStagedFiles": true,
+  "diffSummary": "Added the requested source-only collection artifact.",
+  "reviewFindings": [],
+  "manualNotes": "No tests were added because this is source collection only."
+}
+```

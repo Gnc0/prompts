@@ -1,0 +1,75 @@
+## Primary-source leads
+
+1. **OpenAI Model Spec (2026-08-18)**  
+   URL: https://model-spec.openai.com/2026-08-18.html  
+   Kind: Official product specification  
+   Evidence: Named section, **“Don’t be sycophantic”** — addresses avoiding agreement that compromises truthful, independent responses.  
+   Relevance: Anti-sycophancy.  
+   Access: Root returned HTTP 200 and identified this version; target page was not separately fetched.
+
+2. **OpenAI Prompt Engineering Guide**  
+   URL: https://platform.openai.com/docs/guides/prompt-engineering  
+   Kind: Official product documentation  
+   Evidence: Named sections **“Write clear instructions,” “Split complex tasks into simpler subtasks,”** and **“Specify the desired length of the output.”**  
+   Relevance: Task proportionality, decomposition, scope, and response length.  
+   Access: Canonical URL not directly fetched in this run.
+
+3. **Anthropic Claude Prompting Best Practices**  
+   URL: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#long-context-prompting  
+   Kind: Official product documentation  
+   Quotation: “Claude responds well to clear, explicit instructions. Being specific about your desired output can help enhance results.”  
+   Additional quotation: “XML tags help Claude parse complex prompts unambiguously, especially when your prompt mixes instructions, context, examples, and variable inputs.”  
+   Relevance: Direct instructions and instruction/context bloat.  
+   Access: HTTP 200; effective URL verified.
+
+4. **Google Gemini Prompt Design Strategies**  
+   URL: https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/prompts/prompt-design-strategies  
+   Kind: Official product documentation  
+   Quotation: “When creating prompts, it is important to clearly define the objectives and expected outcomes for the task.”  
+   Named section: **“Break down complex tasks.”**  
+   Relevance: Proportional task complexity and clear outputs.  
+   Access: HTTP 200; effective URL verified after redirect.
+
+5. **GOV.UK Writing to GOV.UK Standards**  
+   URL: https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/tone-of-voice/  
+   Kind: UK government guidance  
+   Evidence: Named section **“Tone of voice.”** The page is official guidance for tone when writing to GOV.UK standards.  
+   Relevance: Direct/plain communication.  
+   Access: HTTP 200; verified as the redirect target of the GOV.UK writing page.
+
+6. **Digital.gov Plain Language Guide**  
+   URL: https://digital.gov/guides/plain-language  
+   Kind: US government guidance  
+   Quotation: “Plain language – content that is clear and easy to understand – is critical to helping the public to make sense of their obligations and benefits.”  
+   Relevance: Plain and direct answers.  
+   Access: HTTP 200; verified.
+
+7. **NIST AI Risk Management Framework**  
+   URL: https://www.nist.gov/itl/ai-risk-management-framework  
+   Kind: US government / standards-body documentation  
+   Quotation: “NIST has developed a framework to better manage risks to individuals, organizations, and society associated with artificial intelligence (AI).”  
+   Relevance: Scope and risk-based boundaries.  
+   Access: HTTP 200; verified.
+
+8. **IETF RFC 2119 — Key words for use in RFCs**  
+   URL: https://www.rfc-editor.org/rfc/rfc2119.html  
+   Kind: Standards-body specification  
+   Quotation: “SHOULD This word, or the adjective ‘RECOMMENDED’, mean that there may exist valid reasons in particular circumstances to ignore a particular item, but the full implications must be understood and carefully weighed before choosing a different course.”  
+   Relevance: Scope boundaries and proportional requirements.  
+   Access: Canonical public URL; not HTTP-checked in this run.
+
+9. **IETF RFC 8174 — Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words**  
+   URL: https://www.rfc-editor.org/rfc/rfc8174.html  
+   Kind: Standards-body specification  
+   Evidence: Named section **“Abstract”** — clarifies that RFC 2119 normative meanings apply when the key words appear in uppercase.  
+   Relevance: Explicit instruction and scope boundaries.  
+   Access: Canonical public URL; not HTTP-checked in this run.
+
+10. **Plain Writing Act of 2010**  
+    URL: https://www.govinfo.gov/content/pkg/PLAW-111publ274/pdf/PLAW-111publ274.pdf  
+    Kind: US federal statute  
+    Quotation: “The purpose of this Act is to improve the effectiveness and accountability of Federal agencies to the public by promoting clear Government communication that the public can understand and use.”  
+    Relevance: Plain and understandable communication.  
+    Access: Canonical government URL; not HTTP-checked in this run.
+
+No cross-source synthesis or recommendations provided.

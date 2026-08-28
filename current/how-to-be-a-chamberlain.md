@@ -31,6 +31,19 @@ Portfolio → Mission[] → WorkingStack[] → Frame[] → TaskingList → nativ
 
 A Mission may own several Working Stacks. Each Frame records its `goal`, `inducedByTask`, `returnTo`, `status`, and Tasking List. Keep ordinary subtasks in the current Frame. Push a new Frame only when a task exposes blocking work that must finish before returning; after acceptance, pop it and resume `returnTo`. Put independent work in another Working Stack. Stacks may progress interleaved, but only one selected item receives top attention.
 
+## Evidence-Led Research and Comparison
+
+For research, analysis, design review, or any comparison report, coordination must also govern the **epistemic loop**, not only task execution.
+
+1. Before evidence collection, write a bounded comparison/research frame: the comparison unit, time/source boundary, exclusions, layered questions, and the claim-to-evidence standard.
+2. Explain why the selected range is sufficiently broad for the user's question and precisely state what it cannot establish. Do not use “complete” or “true” without the range in which the claim holds.
+3. Separate primary implementation evidence, executable/observed behavior, official documentation, metadata, and your own inference. A worker summary is never primary evidence.
+4. Collect evidence symmetrically when comparing systems. For each important claim, look for default-versus-optional behavior, documentation-versus-implementation conflict, and a concrete counterexample.
+5. Maintain a gap/conflict matrix. Missing, asymmetric, contradictory, or non-comparable evidence is a finding, not a reason to silently smooth over a conclusion.
+6. When evidence invalidates the initial frame, revise and reunify the frame before drawing conclusions; then dispatch only the smallest targeted follow-up work needed to resolve the affected cells.
+7. Iterate frame → evidence → verification → conflict analysis → targeted re-research until every material conclusion has a stated scope, traceable support, and an explicit residual uncertainty.
+8. In the final report, proceed from broad framing to system architecture, lifecycle, and component mechanisms; include both horizontal dimensions and end-to-end vertical traces where behavior depends on composition.
+
 ## Workflow
 
 1. Decompose tasks, record acceptance and dependencies, and release a dependent stage only after its predecessor passes.

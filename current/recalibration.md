@@ -7,7 +7,7 @@ description: Reconstruct the global state of long-running work into independent 
 
 ## Purpose
 
-Restore the user's global work orientation. Explain the whole active portfolio: its original goals, independent working lines, nested stack frames, evidence-backed progress, current top, next action, and return point.
+Restore the user's global work orientation. Explain the whole active portfolio through its current working stacks, evidence-backed progress, selected top, next action, and compact popped-frame history.
 
 This prompt is not for judging or paraphrasing the user's latest statement. Treat the invocation message only as a scope selector. Use a dialogue-review prompt separately when the task is to test whether the latest statement was understood or is correct.
 
@@ -34,25 +34,33 @@ Start with one sentence in the user's task language. Assume the user remembers t
 
 Create a new working line only when an item has an independent goal, completion condition, or responsibility boundary. A helper, method, stage, or temporary problem does not become a separate line merely because it recently received attention.
 
-Keep inactive, blocked, completed, and expired lines visible when they still explain the current portfolio.
+Keep queued, active, and blocked lines visible in the current view. Omit completed and expired lines there by default; preserve their frame-level evolution in the separate popped-frame view.
 
 ### 3. Rebuild each working stack
 
-Within each line, order frames from the root goal to the current top:
+Within each live line, reconstruct only its current frame stack:
 
 ```text
-root goal → entered stage → discovered problem → evolved subproblem → current top
+root live frame → suspended live frame(s) → current top
 ```
 
-For every relevant frame recover:
+For every live frame recover:
 
-- **Push:** why the parent work paused;
+- **Push:** why a parent task was suspended and this context was entered;
 - **Work:** what this frame must complete;
 - **State:** queued, active, blocked, returned, verified, accepted, or expired;
-- **Pop:** what completes the frame;
-- **Return:** where work resumes afterward.
+- **Pop:** what evidence-backed condition closes this frame.
 
-Do not call something a stack frame when it has no return point.
+A non-root frame requires an actual context switch and one suspended parent task. Strict LIFO stack order uniquely determines the parent; do not add a separate return field. Ordinary sequential, parallel, verification, and rework tasks remain in the frame's task graph rather than becoming frames.
+
+When an accepted or expired frame is popped, retain one compact record under its original working stack:
+
+- **Main focus:** the frame's local goal;
+- **Push:** why it was entered;
+- **Result:** what it established or why it expired;
+- **Evidence / live residuals:** only what is needed to understand or audit that result.
+
+Do not expand ordinary tasks, failed attempts, or discarded options inside a popped frame unless the user explicitly requests that audit depth.
 
 ### 4. Calibrate progress
 
@@ -62,21 +70,25 @@ Do not collapse distinct states:
 planned ≠ dispatched ≠ returned ≠ verified ≠ accepted
 ```
 
-Write `done` only for verified or accepted work. Preserve the causal changes that explain the current structure, but omit chat-by-chat noise and raw orchestration logs.
+Write `done` only for verified or accepted work. Preserve task evolution in its owning working stack, but keep popped frames compact and separate from the current control view. Omit chat-by-chat noise and raw orchestration logs.
 
-### 5. Answer the three questions
+### 5. Answer the current-state questions
 
-For every active line answer:
+For every live line answer:
 
 - **Goal:** what final outcome does this line seek?
-- **Done:** which frames are evidence-backed and already popped?
-- **Next:** what is the smallest current action, and where does work return after it?
+- **Stack:** which live frames lead to the current top?
+- **Established:** which popped-frame results are still prerequisites of the current top?
+- **Current:** what is selected, running in the background, blocked, or awaiting verification?
+- **Next:** what is the smallest current action?
 
-Then identify the portfolio's current sole focus and keep other lines visible without giving them equal narrative weight.
+Then identify the portfolio's sole selected focus without treating it as a ban on asynchronous progress in other working stacks.
 
 ## Output shape
 
-Adapt length to the portfolio. Prefer this structure:
+Render two views over the same underlying task and stack state. They are not separate ledgers or authorities.
+
+### Print A — Current Stack View
 
 ```text
 Global goal:
@@ -84,25 +96,36 @@ Global goal:
 
 Working line A — <name>
 - Goal:
-- Evolution:
-- Stack: root → frame → current top
-- Done:
-- Current:
+- Stack: root live frame → ... → current top
+- Established: <only popped results still required here>
+- Current: <selected / background / blocked / verification>
 - Next:
-- Pop / return:
 
 Working line B — <name>
 - ...
 
 Portfolio focus:
-- Current sole focus:
-- Queued / blocked / expired:
+- Selected:
+- Background:
+- Queued / blocked / verification:
 - Look at now:
 
 Final sentence: <global goal + actual state + next move>
 ```
 
-A small portfolio may use a compact table. Expand history only when it explains a current line, dependency, or return point.
+### Print B — Popped Frame View
+
+Group compact popped records under the working stack that owned them:
+
+```text
+Working line A — <name>
+- [popped] <main focus>
+  - Push: <why this frame was entered>
+  - Result: <what it established or why it expired>
+  - Evidence / residual: <only when still useful>
+```
+
+This view preserves frame-level evolution without mixing it into the current stack. Do not promote ordinary completed tasks to popped frames. A small portfolio with no popped frames may omit Print B. Expand a record only when the user requests history/audit or a current conflict depends on its internals.
 
 ## Guardrails
 
@@ -111,5 +134,8 @@ A small portfolio may use a compact table. Expand history only when it explains 
 - Do not dump task or ledger rows without translating them into the user's goals.
 - Do not invent dependencies between useful but independent lines.
 - Do not hide unresolved names, mappings, conflicts, or missing evidence.
+- Do not mix popped-frame evolution into the Current Stack View.
+- Do not flatten popped frames into a global history list; keep each record under its owning working stack and structural position.
+- Do not let Print A and Print B maintain conflicting state; both are projections of the same native tasks, evidence, and stack structure.
 - Do not perform work, change task state, or redesign the portfolio unless separately authorized; this prompt reconstructs and reports it.
 - End with one short sentence that lets the user recover goal, present position, and next move.

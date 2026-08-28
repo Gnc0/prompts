@@ -1,0 +1,66 @@
+# Raw source collection — coding-agent reliability (Task #87)
+
+## 1. SWE-bench: Can Language Models Resolve Real-World GitHub Issues?
+- **Original URL:** https://arxiv.org/abs/2310.06770
+- **Publication/source kind:** arXiv preprint
+- **Exact abstract/result passage:** “Our evaluations show that both state-of-the-art proprietary models and our fine-tuned model SWE-Llama can resolve only the simplest issues. The best-performing model, Claude 2, is able to solve a mere $1.96$% of the issues.”
+- **Minimal faithful summary / study scope:** Introduces SWE-bench: 2,294 issue-and-pull-request tasks from 12 Python repositories, evaluated as codebase edits that address reported issues.
+
+## 2. SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering
+- **Original URL:** https://arxiv.org/abs/2405.15793
+- **Publication/source kind:** arXiv preprint
+- **Exact abstract/result passage:** “We evaluate SWE-agent on SWE-bench and HumanEvalFix, achieving state-of-the-art performance on both with a pass@1 rate of 12.5% and 87.7%, respectively, far exceeding the previous state-of-the-art achieved with non-interactive LMs.”
+- **Minimal faithful summary / study scope:** Studies how an agent-computer interface affects an LM agent’s repository navigation, code editing, test execution, behavior, and performance on SWE-bench and HumanEvalFix.
+
+## 3. Agentless: Demystifying LLM-based Software Engineering Agents
+- **Original URL:** https://arxiv.org/abs/2407.01489
+- **Publication/source kind:** arXiv preprint
+- **Exact abstract/result passage:** “Furthermore, we manually classified the problems in SWE-bench Lite and found problems with exact ground truth patch or insufficient/misleading issue descriptions. As such, we construct SWE-bench Lite-S by excluding such problematic issues to perform more rigorous evaluation and comparison.”
+- **Minimal faithful summary / study scope:** Evaluates a three-phase localization, repair, and patch-validation method on SWE-bench Lite; also reports a manual classification of benchmark problems and introduces the filtered Lite-S subset.
+
+## 4. SWE-Lancer: Can Frontier LLMs Earn $1 Million from Real-World Freelance Software Engineering?
+- **Original URL:** https://arxiv.org/abs/2502.12115
+- **Publication/source kind:** arXiv preprint / benchmark report
+- **Exact abstract/result passage:** “We evaluate model performance and find that frontier models are still unable to solve the majority of tasks.”
+- **Minimal faithful summary / study scope:** Introduces 1,400+ Upwork-derived freelance software-engineering tasks, including independent implementation tasks and managerial proposal-choice tasks; independent tasks use end-to-end tests and managerial tasks are compared with original manager choices.
+
+## 5. RepairAgent: An Autonomous, LLM-Based Agent for Program Repair
+- **Original URL:** https://arxiv.org/abs/2403.17134
+- **Publication/source kind:** arXiv preprint
+- **Exact abstract/result passage:** “RepairAgent freely interleaves gathering information about the bug, gathering repair ingredients, and validating fixes, while deciding which tools to invoke based on the gathered information and feedback from previous fix attempts.”
+- **Minimal faithful summary / study scope:** Evaluates an autonomous tool-using repair agent on Defects4J; the paper reports 164 repaired bugs, including 39 not fixed by prior techniques.
+
+```acceptance-report
+{
+  "criteriaSatisfied": [
+    {
+      "id": "criterion-1",
+      "status": "satisfied",
+      "evidence": "Five concrete primary-source findings are recorded in /Users/ssyram/workspace/ai-tools/prompts/.pending/occams-razor/worker-outputs/87-reliability-materials.md, each with an original URL, source kind, exact passage, and scoped summary."
+    }
+  ],
+  "changedFiles": [
+    "/Users/ssyram/workspace/ai-tools/prompts/.pending/occams-razor/worker-outputs/87-reliability-materials.md"
+  ],
+  "testsAddedOrUpdated": [],
+  "commandsRun": [
+    {
+      "command": "primary-source retrieval via arXiv abstract records",
+      "result": "passed",
+      "summary": "Retrieved and transcribed abstract passages from five arXiv primary records."
+    }
+  ],
+  "validationOutput": [
+    "The output contains five findings, within the requested maximum of eight; each finding contains the requested four fields."
+  ],
+  "residualRisks": [
+    "Collection is limited to five directly retrieved primary records because available web-search providers were rate-limited or lacked configured API keys."
+  ],
+  "noStagedFiles": true,
+  "diffSummary": "Created the requested raw-source collection file; no project source files were changed.",
+  "reviewFindings": [
+    "no blockers"
+  ],
+  "manualNotes": "Exact passages are drawn from the cited primary records' abstracts."
+}
+```

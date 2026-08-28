@@ -1,0 +1,67 @@
+# Source collection — coordination overhead materials
+
+## 1. MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework
+- **Original URL:** https://arxiv.org/abs/2308.00352
+- **Publication/source kind:** arXiv preprint
+- **Exact abstract passage:** “MetaGPT utilizes an assembly line paradigm to assign diverse roles to various agents, efficiently breaking down complex tasks into subtasks involving many agents working together.”
+- **Minimal faithful summary / study scope:** Introduces an SOP-driven role-based multi-agent framework and reports collaborative-software-engineering benchmark results.
+
+## 2. ChatDev: Communicative Agents for Software Development
+- **Original URL:** https://arxiv.org/abs/2307.07924
+- **Publication/source kind:** arXiv preprint
+- **Exact abstract passage:** “We introduce ChatDev, a chat-powered software development framework in which specialized agents driven by large language models (LLMs) are guided in what to communicate (via chat chain) and how to communicate (via communicative dehallucination).”
+- **Minimal faithful summary / study scope:** Presents specialized-agent communication across design, coding, and testing in a software-development workflow.
+
+## 3. AgentCoder: Multi-Agent-based Code Generation with Iterative Testing and Optimisation
+- **Original URL:** https://arxiv.org/abs/2312.13010
+- **Publication/source kind:** arXiv preprint
+- **Exact abstract/result passage:** “AgentCoder (GPT-4) achieves 96.3% and 91.8% pass@1 in HumanEval and MBPP datasets with an overall token overhead of 56.9K and 66.3K, while state-of-the-art obtains only 90.2% and 78.9% pass@1 with an overall token overhead of 138.2K and 206.5K.”
+- **Minimal faithful summary / study scope:** Evaluates programmer, test-designer, and test-executor agents on HumanEval and MBPP; reports pass@1 and aggregate token overhead.
+
+## 4. CodeAgent: Autonomous Communicative Agents for Code Review
+- **Original URL:** https://arxiv.org/abs/2402.02172
+- **Publication/source kind:** arXiv preprint
+- **Exact abstract passage:** “CodeAgent incorporates a supervisory agent, QA-Checker, to ensure that all the agents' contributions address the initial review question.”
+- **Minimal faithful summary / study scope:** Evaluates a supervisory multi-agent code-review system on change/message consistency, vulnerability introduction, style adherence, and revision suggestion.
+
+## 5. SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering
+- **Original URL:** https://arxiv.org/abs/2405.15793
+- **Publication/source kind:** arXiv preprint
+- **Exact abstract/result passage:** “We investigate how interface design affects the performance of language model agents.”
+- **Minimal faithful summary / study scope:** Studies an autonomous software-engineering agent’s interface design on SWE-bench and HumanEvalFix; this is a single-agent interface/planning baseline rather than a multi-agent study.
+
+```acceptance-report
+{
+  "criteriaSatisfied": [
+    {
+      "id": "criterion-1",
+      "status": "satisfied",
+      "evidence": "Five concrete primary-source findings are recorded in /Users/ssyram/workspace/ai-tools/prompts/.pending/occams-razor/worker-outputs/69-coordination-overhead-materials.md, each with original URL, source kind, verbatim passage, and study scope."
+    }
+  ],
+  "changedFiles": [
+    "/Users/ssyram/workspace/ai-tools/prompts/.pending/occams-razor/worker-outputs/69-coordination-overhead-materials.md"
+  ],
+  "testsAddedOrUpdated": [],
+  "commandsRun": [
+    {
+      "command": "Primary-source retrieval via arXiv abstract pages",
+      "result": "passed",
+      "summary": "Retrieved the five cited arXiv abstract pages and extracted the quoted passages."
+    }
+  ],
+  "validationOutput": [
+    "All five entries contain the requested original URL, publication/source kind, short exact abstract or result passage, and minimal scope summary."
+  ],
+  "residualRisks": [
+    "The collection is limited to five sources and is not an exhaustive literature search.",
+    "SWE-agent is included as a software-agent interface/planning baseline, not as a multi-agent coordination study."
+  ],
+  "noStagedFiles": true,
+  "diffSummary": "Created the requested source-only materials file with five primary studies.",
+  "reviewFindings": [
+    "no blockers"
+  ],
+  "manualNotes": "Source collection only; no comparative review, validation, rating, recommendation, or synthesis was performed."
+}
+```

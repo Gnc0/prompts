@@ -45,6 +45,76 @@ Do not merge or skip any item.
 If the user interrupts output, treat it as a directionality problem.
 Stop the current direction, listen to the first interruption sentence, and infer what is missing.
 
+### h) Bounded Completeness Argument (mandatory)
+
+Every survey plan must include a concise `BoundedCompletenessArgument`. It states why a defined evidence corpus is sufficient **only** for a named decision discussion; it must not turn source count, model agreement, or a stop condition into a claim of exhaustive literature, universal soundness, or deployment validation.
+
+```python
+@dataclass
+class BoundedCompletenessArgument:
+    scope: str
+    decision_target: str
+    time_window: str
+    evidence_universe: list[str]
+    inclusion_rules: list[str]
+    exclusion_rules: list[str]
+    coverage_map: dict[str, list[str]]       # decision question/route -> evidence roles
+    source_discovery_status: str             # open/closed and the stated basis
+    validation_status: str                   # what has and has not been empirically/security validated
+    reopen_triggers: list[str]
+    boss_challenge_protocol: BossChallengeProtocol
+    boss_challenge_result: BossChallengeResult
+    open_web_boss_challenge_protocol: OpenWebBossChallengeProtocol | None
+    open_web_boss_challenge_result: OpenWebBossChallengeResult | None
+
+@dataclass
+class BossChallengeProtocol:
+    pre_survey_use: str                      # independent obvious-seed/material-universe brainstorming
+    post_survey_use: str                     # reasonable-boss-question coverage challenge
+    model_families: list[str]
+    sample_count: int
+    prompt_variants: list[str]
+    retry_policy: str
+    prompt_text_or_location: str
+    result_aggregation: str
+    limits: str                              # no ground truth; does not substitute for an open-web challenge
+
+@dataclass
+class BossChallengeResult:
+    sample_records: list[str]
+    true_in_scope_gaps: list[str]
+    already_known_items_to_surface: list[str]
+    decision_relevance: str
+    limitations: str
+
+@dataclass
+class OpenWebBossChallengeProtocol:
+    natural_question: str                    # the question an unaided decision-maker would plausibly ask
+    no_local_material_disclosure: bool        # model must not receive the survey corpus, index, or coverage map
+    web_enabled_model_families: list[str]
+    sample_count: int
+    prompt_text_or_location: str
+    run_date_or_version: str
+    retry_policy: str
+    response_table_schema: str               # concept/source/practice/attack/decision question columns
+    mapping_labels: list[str]                # covered | buried | partial | true-gap | out-of-scope | validation-only
+    row_mapping_method: str                  # every externally proposed row maps to evidence or an explicit disposition
+    limits: str                              # model output is a lead, never an external source or completeness proof
+
+@dataclass
+class OpenWebBossChallengeResult:
+    raw_response_records: list[str]
+    row_mapping: dict[str, str]
+    true_in_scope_gaps: list[str]
+    deferred_or_validation_only_items: list[str]
+    unresolved_rows: list[str]
+    limitations: str
+```
+
+The plan author must state the model families, sample count, complementary prompt variants, retry policy, prompt text or durable location, aggregation rule, and limits. Run the latent challenge twice: before survey discovery to generate obvious seed categories and material-universe checks, and after synthesis to test whether reasonable decision-maker questions were missed. It is one bounded seed-plus-coverage method, not a looping reviewer or gate chain; a single final fresh review is optional and only when requested.
+
+For fast-moving practitioner domains, the plan must separately decide whether to run an **open-web BOSS challenge**. This models the realistic failure mode: an unaided decision-maker asks a web-enabled AI a natural question, receives a table of concepts, sources, products, attacks, or design questions, and finds a reasonable row absent from the survey. The AI receives neither local material nor the coverage map before answering. Preserve its prompt, model/provider, date/version, retry record, and raw response. Then map **every row** to `covered`, `covered-but-buried`, `partial`, `true-gap`, `out-of-scope`, or `validation-only` using the survey evidence. A `true-gap` requires an in-scope row that could change the named decision and has no existing evidence mapping; an unimplemented empirical test, a user decision, or an unverified model assertion is not by itself a material-discovery gap. The model answer is a coverage lead, never a cited source, ground truth, or completeness proof. Do not turn this into a repeating gate: one declared run with an explicit unresolved-row disposition is sufficient unless a named reopen trigger fires.
+
 ---
 
 ## Seven-Stage Framework

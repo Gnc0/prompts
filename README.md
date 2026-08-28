@@ -9,6 +9,7 @@
 - `current/`: 当前维护中的版本，默认应优先使用这里的内容。
 - `old/`: 旧版本归档，用来回看措辞、结构或方法演进。
 - `sp-ver/`: 面向特定场景整理的中文版本，目前主要是 Hoare 系列的中文化 prompt。
+- `docs/`: 只为确实需要分层理解设计的复杂 prompt 保存专属 QPDI 设计文档；不替代 `current/` 中可直接使用的 prompt。
 
 ## 主要内容
 
@@ -47,6 +48,7 @@
 
 ### 辅助 prompt
 
+- `occams-razor`: 围绕当前用户意图自动压缩无必要的设计与执行复杂度；抽象原则必须具体化却当前无法建立等价操作映射时，使用明确非等价的有限投影。其 QPDI 设计见 [`principles.md`](docs/occams-razor/principles.md)（Q）、[`architecture.md`](docs/occams-razor/architecture.md)（candidate P/D）与 [candidate `SKILL.md`](.pending/occams-razor/SKILL.md)（I）。
 - `finegrained-check`: 适合做更细粒度的检查或补充验证。
 - `evo-graph`: 用来梳理演进关系、推导路径或结构变化。
 - `make-survey-plan`: 用来设计 survey / organise / plan 类型的调研与整理流程。
@@ -62,3 +64,4 @@
 - 新增或修改时，优先收敛到 `current/`。
 - `old/` 不追求同步，只保留有参考价值的历史版本。
 - 中文版本只在确实需要本地化表达、术语映射或场景适配时单独维护。
+- 只有 prompt 的价值边界、经验依据或分层设计确实复杂时，才新增 `docs/<prompt>/`；文档记录 QPDI 设计依据，不应复制 prompt 正文或制造平行工作流。

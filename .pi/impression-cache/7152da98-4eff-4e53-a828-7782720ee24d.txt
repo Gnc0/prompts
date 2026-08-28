@@ -1,0 +1,72 @@
+# Task 72 — Planning/action source collection
+
+## 1. Agentless: Demystifying LLM-based Software Engineering Agents
+- Original URL: https://arxiv.org/abs/2407.01489
+- Publication/source kind: arXiv preprint
+- Exact abstract/result passage: “Compared to the verbose and complex setup of agent-based approaches, Agentless employs a simplistic three-phase process of localization, repair, and patch validation, without letting the LLM decide future actions or operate with complex tools.”
+- Minimal faithful summary and study scope: Compares a fixed three-stage decomposition with autonomous tool-using software agents on SWE-bench Lite; reports 32.00% (96 correct fixes) and $0.70 cost in its stated comparison.
+
+## 2. SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering
+- Original URL: https://arxiv.org/abs/2405.15793
+- Publication/source kind: arXiv preprint
+- Exact abstract/result passage: “We investigate how interface design affects the performance of language model agents.”
+- Minimal faithful summary and study scope: Studies how an agent-computer interface changes the actions available for repository navigation, file editing, and test/program execution. Evaluates SWE-agent on SWE-bench and HumanEvalFix; the abstract reports pass@1 of 12.5% and 87.7%, respectively.
+
+## 3. AutoCodeRover: Autonomous Program Improvement
+- Original URL: https://arxiv.org/abs/2404.05427
+- Publication/source kind: arXiv preprint
+- Exact abstract/result passage: “Our code search exploits the program structure in the form of classes/methods to enhance LLM's understanding of the issue's root cause, and effectively retrieve a context via iterative search.”
+- Minimal faithful summary and study scope: Evaluates an iterative, structure-aware search/action workflow for GitHub-issue resolution. On SWE-bench Lite (300 real-life GitHub issues), the abstract reports 19% efficacy and average cost of $0.43.
+
+## 4. Executable Code Actions Elicit Better LLM Agents
+- Original URL: https://arxiv.org/abs/2402.01030
+- Publication/source kind: arXiv preprint
+- Exact abstract/result passage: “This work proposes to use executable Python code to consolidate LLM agents' actions into a unified action space (CodeAct).”
+- Minimal faithful summary and study scope: Tests executable code as the action representation rather than predefined JSON/text tool calls. Across 17 LLMs on API-Bank and a newly curated benchmark, the abstract reports up to 20% higher success rate; it also describes coding/model-training and self-debugging tasks.
+
+## 5. OpenHands: An Open Platform for AI Software Developers as Generalist Agents
+- Original URL: https://arxiv.org/abs/2407.16741
+- Publication/source kind: arXiv preprint
+- Exact abstract/result passage: “In this paper, we introduce OpenHands (f.k.a. OpenDevin), a platform for the development of powerful and flexible AI agents that interact with the world in similar ways to those of a human developer: by writing code, interacting with a command line, and browsing the web.”
+- Minimal faithful summary and study scope: Describes a coding-agent platform exposing code-writing, command-line, and browser actions, plus sandboxed execution and multi-agent coordination. Evaluates incorporated agents across 15 tasks, including SWE-BENCH and WEBARENA.
+
+```acceptance-report
+{
+  "criteriaSatisfied": [
+    {
+      "id": "criterion-1",
+      "status": "satisfied",
+      "evidence": "Concrete source collection written to /Users/ssyram/workspace/ai-tools/prompts/.pending/occams-razor/worker-outputs/72-planning-action-materials.md with five original URLs, source kinds, exact passages, and scope summaries."
+    }
+  ],
+  "changedFiles": [
+    "/Users/ssyram/workspace/ai-tools/prompts/.pending/occams-razor/worker-outputs/72-planning-action-materials.md"
+  ],
+  "testsAddedOrUpdated": [],
+  "commandsRun": [
+    {
+      "command": "web_search (four-angle discovery; default and alternate providers)",
+      "result": "failed",
+      "summary": "Configured search providers lacked usable credentials or were rate-limited; primary arXiv records were fetched directly."
+    },
+    {
+      "command": "fetch_content (five arXiv original records)",
+      "result": "passed",
+      "summary": "Retrieved primary-record abstracts and reported results used for the quoted passages."
+    }
+  ],
+  "validationOutput": [
+    "All five entries use direct arXiv original-record URLs and include the requested kind, short exact passage, and minimal scope summary."
+  ],
+  "residualRisks": [
+    "All materials are arXiv preprints; publication status and claims were not independently reviewed, per source-collection-only scope.",
+    "Search-provider failures may have limited discovery breadth; the collection is intentionally below the maximum of eight."
+  ],
+  "noStagedFiles": true,
+  "diffSummary": "Created the Task 72 source-only planning/action materials dossier.",
+  "reviewFindings": [
+    "no blockers: requested source fields are present for each collected paper."
+  ],
+  "manualNotes": "No review, validation, ranking, recommendation, or synthesis was performed beyond recording the source abstracts/results and study scope."
+}
+```
