@@ -35,6 +35,8 @@ Q 是人的最小不可委托边界，由三种不能相互替代的内容组成
 
 事实、经验、失败现象、实现反馈和 AI 推断都不能自行生成规范授权。AI 可以归纳 candidate Q、暴露 Q.I 冲突、挑战 Q.A 或检验 Q.E；candidate Q 只有经人确认后才成为正式 Q。
 
+Q 可以参考 architectonic 的 whole–part 组织，但不要求服从单一最高 idea。材料中存在真实的整体关切时，可以呈现 Q.I 之间的展开、限制与张力，并让 Q.A/Q.E 处在其实际参与推理的语境中；不存在这种中心时，应保留多个不可还原的关切，不能为了“体系感”伪造统一。这样的组织只帮助读者理解既有 Q，不产生新的规范授权、不证明 Q 完整，也不是新的内容类型。
+
 ## 3. P、D、I
 
 - **P — Design Properties**：P 是一层设计必须满足的全部可判定性质。local P 规定当前设计整体的性质；global P 规定作用域内、条件命中的后代设计必须满足的性质。pre/post、invariant、关系约束与禁止条件都是 P 的表达形式，不是并列内容类型。
@@ -98,6 +100,8 @@ SCCO 是对节点、论证关系和整体结构的四维评价：
 - Complete: 结构是否覆盖全部已触发义务：是否遗漏必要条件、分支、反例、受影响对象、上游回答或下游承接。
 - Concise: 结构是否只保留有论证作用的内容：是否存在孤立、重复、陈旧、无排除力的节点，或被复制到多处的同一规则。
 - Optimality / Orthogonality: 在满足 Sound、Complete、Concise 的真实候选中，是否存在更简单、直接、稳健、前提更弱、引用链更短、依赖面更小的结构；适用规则是否正交而不过度重叠。
+
+SCCO 不能由局部 pass 的合取直接推出整体 pass。每个 D-frame 还必须作为一个 whole 检查：component contracts 是否覆盖本层义务，composition 是否使它们共同满足 P，跨分支共享前提、接口与适用规则是否相容或已明确隔离，实际对上 guarantee 是否仍成立；D.root 最终以整体 guarantee 对账 Q。可借 architectonic 表示这种 whole-level integrity 姿态，但它不新增 SCCO 维度，也不承诺 Q、scope 或 whole-shape 本身绝对完备。
 
 Optimality 始终是评价维度，但没有真实候选时不虚构比较。SCCO 通过只表示论证结构通过当前检查，不自动证明事实真值、经验可靠性、审美、默会细节或整体判断正确。
 

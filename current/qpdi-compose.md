@@ -43,6 +43,10 @@ Task Overview 可以引用 Q/D 标识帮助导航，但不能替代 Q，也不�
 **预期产物**：<Q、D.root、某些 D 节点或重组后的文件>
 ```
 
+## Q 的整体组织（按需）
+
+Q 不必是平面条目，也不必服从单一最高 idea。材料中存在真实的整体关切时，可在 Q 正文前参考 architectonic，用一小段非权威组织说明呈现 governing concern、Q.I 之间的展开、限制或张力，以及 Q.A/Q.E 的实际作用语境；没有时保持并列或按真实问题分组，不制造统一中心。这一说明只组织既有 Q，不取得规范权威，也不证明完整性。若整理改变 confirmed Q 的含义、范围或优先级，仍是新的 candidate Q，不能以编辑性组织代替用户确认。
+
 # 一、职责与默认行为
 
 ## 1. 可以做什么
@@ -385,6 +389,8 @@ P.global: owner / scope
 ```
 
 状态、索引和反向链接只在有真实消费者时增加，不为了完整感库存字段。
+
+完成一个 D-frame 或子树前，必须把它作为 whole 重新组合检查，不能用“各 component 分别满足 contract”代替整体成立：确认 contracts 覆盖本层全部已触发义务，composition 处理跨分支接口、共享前提与 applicable global P，并实际共同满足 P；确认对上 guarantee 未被静默收窄，D.root 的整体 guarantee 仍回答 Q；确认本轮变化的真实上下游同步义务已处理或显式保留缺口。这是 R.Satisfaction 与 SCCO 的 whole-level 应用，不是新增审查维度，也不把 Compose 扩张成 tribunal。
 
 ## 12.1 可导航展开与叶子完成粒度
 
