@@ -58,6 +58,24 @@ git checkout tool              # 切回 tool 继续开发
 ### 4. 向上游提交 PR
 在 GitHub 上从 `fork/main` 向 `origin/main` 发起 Pull Request。
 
+### 5. 路径限定同步（如：只把上游的 current/ 覆盖到本地）
+
+当用户请求按**路径**限定范围（「只更新 X」「把上游的 X 覆盖到本地」）时，操作范围必须严格等于请求的路径集合，用路径级覆盖而非整支合并：
+
+```bash
+git fetch https://github.com/ssyram/prompts.git main   # 上游无 remote 时按 URL 抓取
+git checkout tool
+git checkout FETCH_HEAD -- current/     # 路径级覆盖，只动 current/
+git commit -m "sync: 覆盖更新 current/（来自 ssyram main <short-sha>）"
+git push origin tool                     # 是否推送需用户确认
+```
+
+**禁止**用整支 `git merge` / `git pull` 完成路径限定请求——merge 会把上游分支的全部内容（`drafts/`、`docs/`、`.pi/` 缓存、归档目录等）一并带入 tool。
+
+> **over-extend 教训**：用户要求「看 ssyram main 的 current 有什么更新，覆盖到本地 current」，助手却按整支同步流程执行了 `main 快进 + merge main 到 tool`，把上游 `drafts/qpdi*.md`、`docs/occams-razor/`、`.pi/impression-cache/` 等非 current 内容带进 tool，被用户指出后只能 `reset --hard` 回退、路径级重做、force-push 修复。两条规则：
+> 1. **方案超出用户请求的字面范围（哪怕只多带一个目录）时，必须显式指出并单独确认**，不能打包进「标准工作流」顺势执行；
+> 2. **diff 比较时「内容一致」≠「merge 无副作用」**——tool 分叉点较旧时，即使 current/ 内容一致，merge 仍可能产生 add/add 冲突并带入意外文件。
+
 ## 网络配置
 
 - 与 GitHub (gh / git) 通信时，默认使用本地代理端口 **7897**，即设置 `https_proxy=http://127.0.0.1:7897 http_proxy=http://127.0.0.1:7897`
@@ -87,6 +105,7 @@ git submodule update --remote claude-code-system-prompts
 - `tool` 分支可以频繁 commit、rebase、force-push，它是你自己的开发空间
 - `main` 分支应该始终保持干净，与 `origin/main` 一致
 - 如果 `tool` 积累了大量零散 commit，合入 `main` 前考虑用 `git rebase -i` 整理
+- 路径限定请求（「只更新/覆盖某目录」）**禁止整支 merge**，用 `git checkout <ref> -- <path>` 做路径级覆盖（见标准工作流第 5 节的 over-extend 教训）
 
 ## current/ 技能路由（当前维护版本）
 
