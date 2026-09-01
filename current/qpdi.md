@@ -35,6 +35,8 @@ Q 是人的最小不可委托边界，由三种不能相互替代的内容组成
 
 事实、经验、失败现象、实现反馈和 AI 推断都不能自行生成规范授权。AI 可以归纳 candidate Q、暴露 Q.I 冲突、挑战 Q.A 或检验 Q.E；candidate Q 只有经人确认后才成为正式 Q。
 
+Q 可以参考 architectonic 的 whole–part 组织，但不要求服从单一最高 idea。材料中存在真实的整体关切时，可以呈现 Q.I 之间的展开、限制与张力，并让 Q.A/Q.E 处在其实际参与推理的语境中；不存在这种中心时，应保留多个不可还原的关切，不能为了“体系感”伪造统一。这样的组织只帮助读者理解既有 Q，不产生新的规范授权、不证明 Q 完整，也不是新的内容类型。
+
 ## 3. P、D、I
 
 - **P — Design Properties**：P 是一层设计必须满足的全部可判定性质。local P 规定当前设计整体的性质；global P 规定作用域内、条件命中的后代设计必须满足的性质。pre/post、invariant、关系约束与禁止条件都是 P 的表达形式，不是并列内容类型。
@@ -80,6 +82,17 @@ Structural Locality 的目的，是防止局部判断伪装成全局原则，也
 - 内容既没有断链和遗漏，也没有重复、孤立与无排除力的结构；
 - 结论由真实材料、命令、测试、审查或用户确认锚定，AI 自述不算证据。
 
+### 设计限制与权衡的位置
+
+设计方案的 trade-off、能力边界、残余风险和潜在漏洞通常属于拥有该方案的 D-frame，而不是 Q，尤其不能因人确认“这个设计目前有限”就反写成 Q.I、降低用户原本追求的正确性或 wanted outcome。
+
+- 局部 D/I 无法严格履行原 contract 或提出 contract 修改时，direct owner D 必须先重算 composition 的实际 guarantee。若 owner 仍完整满足其 parent 分配的 contract，这只是本层 contract redesign：由本层 R 论证后传播停止，不称为 guarantee narrowing，也不必上报 D.root。
+- 只有 owner 的实际对上 guarantee 因此变弱时，才形成该层的 guarantee narrowing，并向 parent D 报告。Parent 重新计算自身实际 guarantee：若其对上保证不变则停止；若也变弱则由 parent 记录自身 narrowing 并继续向上。该条件递归传播的最顶层是 D.root/root P。
+- 只有 D.root 直接比较 Q：中间 D-frame 只比较自身实际 guarantee 与 parent contract；D.root 比较整体实际 guarantee/root P 与 Q，并由人确认任何会使顶层 Sound/Complete 非严格的残余缺口。不得把真实 narrowing 藏在叶子实现、测试备注或审计附件中。
+- Guarantee narrowing 只向上报告，不向下传播。上层或人确认 residual gap 只收窄该 D-frame 的保证声明；它不会削弱下层原 contract，也不得变成向后代传播的 global P。后代责任只有经过另一个有论证的 contract redesign 才能改变。
+- 人确认某项设计限制及其风险，可以授权在该限制可见的前提下继续当前 D；这不等于人把限制本身变成了意图。
+- 只有人明确改变“什么算正确、真正想要什么或不可接受什么”时，才新增或修订 Q.I；否则应修订 P/M/R、记录 limitation，并重新检查 `M ⊨ P` 与 Optimality。
+
 ## 6. SCCO
 
 SCCO 是对节点、论证关系和整体结构的四维评价：
@@ -87,6 +100,8 @@ SCCO 是对节点、论证关系和整体结构的四维评价：
 - Complete: 结构是否覆盖全部已触发义务：是否遗漏必要条件、分支、反例、受影响对象、上游回答或下游承接。
 - Concise: 结构是否只保留有论证作用的内容：是否存在孤立、重复、陈旧、无排除力的节点，或被复制到多处的同一规则。
 - Optimality / Orthogonality: 在满足 Sound、Complete、Concise 的真实候选中，是否存在更简单、直接、稳健、前提更弱、引用链更短、依赖面更小的结构；适用规则是否正交而不过度重叠。
+
+SCCO 不能由局部 pass 的合取直接推出整体 pass。每个 D-frame 还必须作为一个 whole 检查：component contracts 是否覆盖本层义务，composition 是否使它们共同满足 P，跨分支共享前提、接口与适用规则是否相容或已明确隔离，实际对上 guarantee 是否仍成立；D.root 最终以整体 guarantee 对账 Q。可借 architectonic 表示这种 whole-level integrity 姿态，但它不新增 SCCO 维度，也不承诺 Q、scope 或 whole-shape 本身绝对完备。
 
 Optimality 始终是评价维度，但没有真实候选时不虚构比较。SCCO 通过只表示论证结构通过当前检查，不自动证明事实真值、经验可靠性、审美、默会细节或整体判断正确。
 
