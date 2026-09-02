@@ -127,13 +127,13 @@ git submodule update --remote claude-code-system-prompts
 
 ## prompt-is-winning-so-much 技能库路由
 
-`prompt-is-winning-so-much/` 是**技能类** prompt 合集（对话规范、认知姿态、哲学对话等），与 `current/` 的工程类 prompt 互补；下每个子目录是一个技能，进入任一目录后，`SKILL.md` 提供该技能的版本级路由（二级路由）。技能库的增删需同步更新本表。
+`prompt-is-winning-so-much/` 是**技能类** prompt 合集（对话规范、认知姿态、哲学对话等），与 `current/` 的工程类 prompt 互补；下每个子目录是一个技能，进入任一目录后，`SKILL.md` 提供该技能的版本级路由（二级路由；例外：`designer/` 无 SKILL.md，由 `sd-writer` 的管线分工承担路由）。技能库的增删需同步更新本表。
 
 | 技能 | 路径 | 一句话说明 |
 |------|------|------------|
 | abstraction-analyst | `prompt-is-winning-so-much/abstraction-analyst/` | 回应前先完成理解：定位真实需求在话题结构中的位置 |
 | analytic-philosophy-prose | `prompt-is-winning-so-much/analytic-philosophy-prose/` | 以顶刊分析哲学范式写作/改写/评审哲学文本 |
-| designer | `prompt-is-winning-so-much/designer/` | 游戏设计五路由（文案策划 / 系统 MDA / 系统策划案 / 数值 MDA / 数值建模）；最终定值与配置交下游数值策划流程 |
+| designer | `prompt-is-winning-so-much/designer/` | 游戏系统策划三级管线（`sd-module-loop` 高级 / `sd-mda` 中级 / `sd-writer` 初级）+ `system-designer-level-spec` 分级标尺；最终定值与配置交下游数值策划流程 |
 | general-prompt | `prompt-is-winning-so-much/general-prompt/` | 七层图式闭合提示词生成（基础 / 判官版） |
 | philosophy-explorer | `prompt-is-winning-so-much/philosophy-explorer/` | 哲学探索：思想编辑与暂定判断生成（基础版刚性 / 规约版调节软化） |
 | philosophy-interlocutor | `prompt-is-winning-so-much/philosophy-interlocutor/` | 哲学对话：结论放最后、每步推导可被击中、概念从现象自身结构长出、不擅自开辟新论域、不使用排版装饰 |

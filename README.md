@@ -31,6 +31,7 @@ tool分支为开发版本，有很多private内容，main分支是跟ssyram的�
 - `workflow`: 通用开发工作流程规范——三阶段（调研 → 架构 → 细化）+ 实现 + 修复迭代 + 文档管理。面向新功能开发与 Bug 修复的标准流程，AI 助手的行为准则与禁令。
 - `workflow-audit`: 多方向、disprove-first 的 PR 审计工作流，并行 challenge 轮 + evidence-gated 结论。
 - `qpdi`: QPDI 宪政式 AI 工作框架——以 /workflow 等 SDD skill 为骨架，从问题意识（Q）出发推进设计（D）→ 实现（I）全流程：意图落宪、架构起草与原则抽离、细化、实现测试、公检法审查。自包含，不依赖任何外部仓库。
+- `qpdi-compose`: QPDI 的 Q+D 写作——从用户原话、既有材料或设计问题中保全论证，起草 Q.I/Q.A/Q.E，形成 D.root 并逐层展开 D（local/global P 作为 D 内部规则一起编写），可按授权写入文件。专注「怎么写」，不生成 I，不代替 SCCO 审查。
 - `qpdi-tribunal`: SCCO 公检法审查——对任意产物（设计文档 / 代码 / 计划 / 论证）做 challenger & prover → counter → judge 的对抗式审查，按 Sound / Complete / Concise / Optimization 四维收敛，问题分流为可直接修与须用户裁决。
 - `scco-recall`: SCCO 召回扇出——审查体系的召回层。把审查对象按 SCCO 维度拆成互盲、正交、低阈值的并行 finder 镜头（强制含跨文件/消费者角度），先捞候选池、再交精度层（qpdi-tribunal / hoare-audit）裁决。只捞不判。
 
@@ -48,18 +49,20 @@ tool分支为开发版本，有很多private内容，main分支是跟ssyram的�
 - `pi-consult`: 多模型顾问调度器——派多个模型独立分析 / 复核 / 集思广益，再以 no-flattering 姿态拷打每份回复的辩护结构后综合。
 - `prompt-iter`: 用测量而不是凭感觉迭代提示词——围绕真实消费该提示词的系统建尽量小、可反复跑的评测循环（定测试对象 → 建 fixture → 建 runner → 定度量 → 装配 + 诚实迭代）。
 - `auto-proof-trajectory-audit`: 面向 auto-proof-cc 运行轨迹的符合度评判与根因分析。
+- `how-to-be-a-chamberlain`: 多任务总协调——作为总协调者而非默认实现者：任务按能力与复杂度路由给异步 worker，主台账与原生任务系统双轨记账，回调验收、依赖控制、分阶段验收，返工/阻塞/过期全程可见。
+- `recalibration`: 长线/多任务工作后的全局状态重建——把进行中的工作重构为独立工作线与工作栈，以用户决策与实证进度为依据，回答「做到哪了、接下来做什么、如何恢复焦点」。
 - `schema-matching-agent`: 具备六对图式（Schema）匹配能力的认知 Agent 系统提示。
 - `skill-routing`: skill 选择经验沉淀记录——不是 skill 规约，而是用哪个 skill 的经验记录。
 
 ### prompt-is-winning-so-much 技能库
 
-`prompt-is-winning-so-much/` 下每个子目录是一个可复用提示词技能（skill），描述一种可被反复调用的提示词工作方式。两级路由：本 README 按场景选技能目录（一级路由），进入目录后由 `SKILL.md` 做版本级路由（二级路由）。
+`prompt-is-winning-so-much/` 下每个子目录是一个可复用提示词技能（skill），描述一种可被反复调用的提示词工作方式。两级路由：本 README 按场景选技能目录（一级路由），进入目录后由 `SKILL.md` 做版本级路由（二级路由）。例外：`designer/` 不设 `SKILL.md`，二级路由由 `sd-writer` 的「分工与管线」承担，按输入所处阶段在 sd-module-loop / sd-mda / sd-writer 间分流。
 
 | 技能 | 目录 | 一句话说明 |
 |------|------|------------|
 | abstraction-analyst | `prompt-is-winning-so-much/abstraction-analyst/` | 回应前先完成理解：定位真实需求在话题结构中的位置 |
 | analytic-philosophy-prose | `prompt-is-winning-so-much/analytic-philosophy-prose/` | 以顶刊分析哲学范式写作/改写/评审哲学文本 |
-| designer | `prompt-is-winning-so-much/designer/` | 游戏设计五路由（文案策划 / 系统 MDA / 系统策划案 / 数值 MDA / 数值建模）；最终定值与配置交下游数值策划流程 |
+| designer | `prompt-is-winning-so-much/designer/` | 游戏系统策划三级管线：`sd-module-loop`（高级·模块循环）→ `sd-mda`（中级·单系统 MDA）→ `sd-writer`（初级·策划文档落地）；另附 `system-designer-level-spec` 策划能力分级标尺；最终定值与配置交下游数值策划流程 |
 | general-prompt | `prompt-is-winning-so-much/general-prompt/` | 七层图式闭合提示词生成（基础 / 判官版） |
 | philosophy-explorer | `prompt-is-winning-so-much/philosophy-explorer/` | 哲学探索：思想编辑与暂定判断生成（基础版刚性 / 规约版调节软化） |
 | philosophy-interlocutor | `prompt-is-winning-so-much/philosophy-interlocutor/` | 哲学对话：结论放最后、每步推导可被击中、概念从现象自身结构长出、不擅自开辟新论域、不使用排版装饰 |
@@ -77,4 +80,4 @@ tool分支为开发版本，有很多private内容，main分支是跟ssyram的�
 
 - 新增或修改 prompt 时，收敛到 `current/`。
 - `current/` 是当前维护版本的唯一真相源；本 README 的「主要内容」必须与 `current/` 目录保持同步。
-- 技能库的增删需同步更新「prompt-is-winning-so-much 技能库」章节与 `CLAUDE.md` 技能路由表。
+- 技能库的增删需同步更新「prompt-is-winning-so-much 技能库」章节与 `AGENTS.md` 技能路由表。
