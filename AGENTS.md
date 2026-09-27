@@ -141,8 +141,10 @@ git submodule update --remote claude-code-system-prompts
 | analytic-philosophy-prose | `prompt-is-winning-so-much/analytic-philosophy-prose/` | 以顶刊分析哲学范式写作/改写/评审哲学文本 |
 | designer | `prompt-is-winning-so-much/designer/` | 游戏系统策划三级管线（`sd-module-loop` / `sd-mda` / `sd-writer`）+ `design-purpose-reviewer` 上位设计目的审查 + `system-designer-level-spec` 分级标尺；最终定值与配置交下游数值策划流程 |
 | general-prompt | `prompt-is-winning-so-much/general-prompt/` | 七层图式闭合提示词生成（基础 / 判官版） |
+| intent-computability | `prompt-is-winning-so-much/intent-computability/` | 意图可计算性：意图展开为任务/语境/操作后，哪些关系必须保持才能继续回答原问题（语境建模、上下文压缩、Agent 接口设计） |
 | philosophy-explorer | `prompt-is-winning-so-much/philosophy-explorer/` | 哲学探索：思想编辑与暂定判断生成（基础版刚性 / 规约版调节软化） |
 | philosophy-interlocutor | `prompt-is-winning-so-much/philosophy-interlocutor/` | 哲学对话：结论放最后、每步推导可被击中、概念从现象自身结构长出、不擅自开辟新论域、不使用排版装饰 |
+| my-taste | `prompt-is-winning-so-much/my-taste/` | 纠错后先对齐用户品位再动手：撤销/覆盖/承诺三轴 + 目标/原则/操作三层，防机械执行、防御性扩写和把原则稀释成清单 |
 | schema-matcher | `prompt-is-winning-so-much/schema-matcher/` | 六轴图式判断：每次回复前显式输出 think_schema 块，对齐需求图式位置（含 eval/ 评测脚手架） |
 
 > 屏蔽说明：`prompt-only-look-myself/` 已加入 `.gitignore`，不被版本追踪。
