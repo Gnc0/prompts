@@ -7,7 +7,7 @@ argument-hint: "[材料、目标文件或要编写的 Q/D 范围]"
 # QPDI Compose — 写 Q 与逐层展开 D
 
 输入材料：
-$ARGUMENTS
+$ARGUMENTS$
 
 本 prompt 专门把材料写成 QPDI 的 **Q 与 D**。P 作为 D 内部的规则结构一起编写。它不生成代码、配置、实现步骤或其他 I 内容，也不承担完整 SCCO 审查。
 
