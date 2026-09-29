@@ -126,6 +126,9 @@ git submodule update --remote claude-code-system-prompts
 | finegrained-check / evo-graph / make-survey-plan | 细粒度一致性检查 / 演进关系图梳理 / survey 调研流程 |
 | charter-craft / pr-craft | 项目宪法制定与修订 / PR 描述书写规范 |
 | explain / no-flattering / pi-consult / prompt-iter | 向具体的人讲清事实 / 拒绝迎合先拷打 / 多模型顾问调度 / 用测量迭代提示词 |
+| how-to-be-a-chamberlain | 多任务总管：异步 worker 派遣、总账本、回调验收、依赖与过期追踪，只协调不亲自实现 |
+| occams-razor | 奥卡姆剃刀：在既定意图/事实/约束下递归删除无必要贡献，得到最小充分结果（只压缩既有对象，不发明新方案） |
+| recalibration | 长任务/多任务后的全局状态重建：工作线 × 工作栈、证据化进度、下一步动作与焦点恢复 |
 | auto-proof-trajectory-audit | auto-proof-cc 运行轨迹的符合度评判与根因分析 |
 | schema-matching-agent | 六对图式匹配认知 Agent 系统提示 |
 
