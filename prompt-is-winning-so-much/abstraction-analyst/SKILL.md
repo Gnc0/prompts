@@ -82,4 +82,4 @@ description: 在回应用户之前先完成一次理解：从用户的全部言�
 
 ## 七、示例
 
-两个完整示例见 [references/examples.md](references/examples.md)：第一个演示模糊需求的首次定位，第二个演示需求变化时搁置清单如何起作用。首次使用本 Skill 或处理复杂材料时阅读。
+三个完整示例见 [references/examples.md](references/examples.md)：第一个演示模糊需求的首次定位，第二个演示需求变化时搁置清单如何起作用，第三个演示修改类任务中搁置清单如何划定修改边界。首次使用本 Skill 或处理复杂材料时阅读。
